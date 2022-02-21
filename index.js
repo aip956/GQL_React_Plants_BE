@@ -2,11 +2,13 @@ require("dotenv").config();
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const mongoose = require('mongoose');
-const { gql } = require('apollo-server-express');
+const typeDefs = require('./typeDefs');
+const resolvers = require('./resolvers');
 
-const { URL } = process.env;
 
 // Database connection
+const { URL } = process.env;
+
 mongoose.connect(
     URL,
     {
@@ -16,21 +18,9 @@ mongoose.connect(
     () => console.log("DB COnnected")
 );
 
-// Queries
-const typeDefs=gql`
-type Query{
-    hello:String
-}
-`
 
-// Resolvers
-const resolvers={
-    Query:{
-        hello:()=>{
-            return "Hello World";
-        },
-    },
-};
+
+// Server connection
 
 const startServer=async()=>{
     const app=express()
