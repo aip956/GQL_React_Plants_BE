@@ -23,6 +23,7 @@ input PlantInput{
 type Mutation{
     createPlant(plant:PlantInput):Plant
     updatePlant(id:String,plant:PlantInput):Plant
+    deletePlant(id:String):String
 }
 `;
 

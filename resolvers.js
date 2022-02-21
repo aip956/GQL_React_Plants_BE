@@ -27,6 +27,11 @@ const resolvers={
                 );
             return plant;
             },
+        deletePlant:async(parent,args,context,info)=>{
+            const {id}=args;
+            await Plant.findByIdAndDelete(id)
+            return "Deleted";
+        }    
     },
 };
 
